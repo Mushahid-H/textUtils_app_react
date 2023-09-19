@@ -1,10 +1,15 @@
 import React, { useState } from 'react'
-
+import TextSummary from './TextSummary'
+import Preview from './Preview'
 const TextArea = ({ header }) => {
   const [text, setText] = useState('Enter text here')
 
   const handleUpCase = () => {
     const newText = text.toUpperCase()
+    setText(newText)
+  }
+  const handleLowCase = () => {
+    const newText = text.toLowerCase()
     setText(newText)
   }
 
@@ -25,6 +30,15 @@ const TextArea = ({ header }) => {
       <button className='btn btn-primary' onClick={handleUpCase}>
         Convert to Uppercase
       </button>
+      <button className='btn btn-primary mx-3' onClick={handleLowCase}>
+        Convert to Lowerase
+      </button>
+
+      <TextSummary
+        noOfwords={text.trim().split(' ').length}
+        noOfcharacters={text.length}
+      />
+      <Preview text={text} />
     </div>
   )
 }
