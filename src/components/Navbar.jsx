@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Navbar = ({ title, aboutApp }) => {
+const Navbar = ({ title, aboutApp, mode, toggleMode }) => {
   return (
-    <nav className='navbar navbar-expand-lg navbar-light bg-light px-3'>
+    <nav className={`navbar navbar-expand-lg navbar-${mode} bg-${mode} px-3`}>
       <div className='container-fluid'>
         <a className='navbar-brand fw-bold fs-2' href='/'>
           {title}
@@ -40,6 +40,21 @@ const Navbar = ({ title, aboutApp }) => {
               Search
             </button>
           </form>
+          <div
+            className={`form-check form-switch ms-3 text-${
+              mode === 'light' ? 'dark' : 'light'
+            }`}
+          >
+            <input
+              class='form-check-input'
+              type='checkbox'
+              onClick={toggleMode}
+              id='flexSwitchCheckDefault'
+            />
+            <label class='form-check-label' htmlFor='flexSwitchCheckDefault'>
+              Change Mode
+            </label>
+          </div>
         </div>
       </div>
     </nav>
